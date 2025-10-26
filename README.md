@@ -5,4 +5,9 @@ In a microcontroller board at thr center you have the processor/soc and the othe
 C program -> RTL -> Layout
 ### FLOW
 Application softaware -> System software(os)(C/C++->compiler->instruction set(architechture of computer)(hardware language(.exe file))->assembler->000101010101)-> RTL-> synthesize-> PD->Hardware(layout)4
+## Element of ASIC
+RTL ip(github), EDA tools(qflow), PDK data(interface bw fab and the designer)(sky 130nm)
+### RTL to GDSII flow
+RTL: synthesis-> floor/power planning -> placement : PDK :-> Clock tree synthesis-> Routing-> Sign off: GDSII 
+Syhthesis:- RTL to CKt from standared cell library5
 

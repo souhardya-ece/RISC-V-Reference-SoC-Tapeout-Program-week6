@@ -16,6 +16,9 @@ CTS:- deliver clk to each seq element.
 Routing:- inteconnection by metal layer.
 Signoff:- physical verification(DRC,LVS), timing verification(STA)
 
-Openlane is a open source flow for tape out experiment to produce clean GDSII. It have the strive soc family.8
+Openlane is a open source flow for tape out experiment to produce clean GDSII. It have the strive soc family.
+
+First of all inside the virtual box you have the VDI of openlane . It is to be run on ubuntu 18 lts version. Whenevere you working you are on cd ~/Deaktop/work/tools/openlane_working_dir/openlane directory
+
 
 

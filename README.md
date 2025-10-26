@@ -4,5 +4,5 @@ In a microcontroller board at thr center you have the processor/soc and the othe
 ## ISA(RISC V instruction set architechture)
 C program -> RTL -> Layout
 ### FLOW
-Application softaware -> System software(os)(C/C++->compiler->instruction set(hardware language(.exe file))->assembler->000101010101)-> Hardware.3.5
+Application softaware -> System software(os)(C/C++->compiler->instruction set(architechture of computer)(hardware language(.exe file))->assembler->000101010101)-> RTL-> synthesize-> PD->Hardware(layout)
 

@@ -16,4 +16,6 @@ CTS:- deliver clk to each seq element.
 Routing:- inteconnection by metal layer.
 Signoff:- physical verification(DRC,LVS), timing verification(STA)
 
+Openlane is a open source flow for tape out experiment to produce clean GDSII. It have the strive soc family.8
+
 

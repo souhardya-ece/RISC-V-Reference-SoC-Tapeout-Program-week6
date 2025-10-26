@@ -18,7 +18,17 @@ Signoff:- physical verification(DRC,LVS), timing verification(STA)
 
 Openlane is a open source flow for tape out experiment to produce clean GDSII. It have the strive soc family.
 
-First of all inside the virtual box you have the VDI of openlane . It is to be run on ubuntu 18 lts version. Whenevere you working you are on cd ~/Deaktop/work/tools/openlane_working_dir/openlane directory
+First of all inside the virtual box you have the VDI of openlane . It is to be run on ubuntu 18 lts version.
+### Labs
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+```
+### Output
 
 
 

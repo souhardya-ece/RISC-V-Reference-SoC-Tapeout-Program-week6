@@ -9,5 +9,11 @@ Application softaware -> System software(os)(C/C++->compiler->instruction set(ar
 RTL ip(github), EDA tools(qflow), PDK data(interface bw fab and the designer)(sky 130nm)
 ### RTL to GDSII flow
 RTL: synthesis-> floor/power planning -> placement : PDK :-> Clock tree synthesis-> Routing-> Sign off: GDSII 
-Syhthesis:- RTL to CKt from standared cell library5
+Syhthesis:- RTL to CKt from standared cell library.
+Floor/Power planning :- Chip , macro floor planning. Vdd/vss
+Placement:- palce cells on floor (global and detail placement)
+CTS:- deliver clk to each seq element.
+Routing:- inteconnection by metal layer.
+Signoff:- physical verification(DRC,LVS), timing verification(STA)
+
 

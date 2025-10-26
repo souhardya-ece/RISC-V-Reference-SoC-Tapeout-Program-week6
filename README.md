@@ -27,8 +27,9 @@ docker
 package require openlane 0.9
 prep -design picorv32a
 run_synthesis
+exit
 ```
 ### Output
-
+Flop Ratio=Number of dff/Total number of cells*100=1613/14876=0.1084*100=10.84%
 
 

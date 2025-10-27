@@ -30,6 +30,7 @@ run_synthesis
 exit
 ```
 ### Output
+### Calculation
 Flop Ratio=Number of dff/Total number of cells*100=1613/14876=0.1084*100=10.84%
 
 ## Floorplan
@@ -41,4 +42,28 @@ If any unit is uses multiple times then we separate out as a block(ip/module;-me
 Decoupling capacitor is place bw the elements if any changes happen from 0->1 it get charges (Vdd') and 1->0 It discharges(Vss') if it is not in the NMH and NML then the charges are provided/Suck by this capacitor.This is for one block.
 Let say in bw the block it haappns If the bus are 1->0 there is ground bounce and 0->1 (Voltage droop) if one vdd is kept place if multiple vdd occurs then this problem is solved(so it can get power to the nearest supply)=> Power planning.
 Pin(i/o) is placed bw the die and core and the remaining portion are filled so that no block and wire are not placed(logical cell placement bolckage)
+### Floorplan Labs
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+run_synthesis
+run_floorplan
+// to see the floorplan on the magic
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/floorplan/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
+```
+### Output
+### Calculation
+According to floorplan def
+1000 Unit Diatance = 1 Micron
+Die width in Unit distance=660685
+Die height in Unit distance =671405
+Die width in micron=660685/1000=660.685 Microns
+Die Height in microns=671407/1000=671.405 Microns
+Die area=443587.212425 sq microns.
+
+### Placement
 

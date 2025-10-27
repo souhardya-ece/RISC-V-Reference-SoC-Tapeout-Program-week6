@@ -32,4 +32,7 @@ exit
 ### Output
 Flop Ratio=Number of dff/Total number of cells*100=1613/14876=0.1084*100=10.84%
 
-
+## Floorplan
+Netlist is the connectivity bw the component. Die is the smll sc material on that ckt is implemented.Inside the die it have the core where the fundamental logic is placed.
+utilization factor=area of netlist/total area of the core.
+Aspect ratio=Heigh/Width.

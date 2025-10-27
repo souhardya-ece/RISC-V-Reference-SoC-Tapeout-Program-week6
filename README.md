@@ -66,7 +66,7 @@ Die Height in microns=671407/1000=671.405 Microns
 Die area=443587.212425 sq microns.
 
 ## Placement And Routing
-Every gate and the flop have the sq,rect shape all are in the libery(shape and the time information) There are diff types of libery of diff falvours. We place the standared cell on floor on to the optimized place.Sometimes the blocks are far away(hich r and c) from source so in that case we use buffers(repeaters) which replicate same signal after some time.
+Every gate and the flop have the sq,rect shape all are in the libery(shape and the time information) There are diff types of libery(where all kinds of box(standared cell) are avilable) of diff falvours. We place the standared cell on floor on to the optimized place.Sometimes the blocks are far away(hich r and c) from source so in that case we use buffers(repeaters) which replicate same signal after some time.
 ### Placement Lab
 ```
 run_placement
@@ -76,5 +76,10 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 exit
 ```
 ### Output
+### Cell Design Flow
+Input:-PDK,DRC and LVS rule, Spice model, library,user defined Spec
+Design Step:- Ckt design(spice simulation), Layout design(eular path, stick diagram), Characterization(Timing=>stimulus).
+Output:- CDL(Ckt Description Language),GDSII,LEF,Extracted spice netlist.
+
 
 

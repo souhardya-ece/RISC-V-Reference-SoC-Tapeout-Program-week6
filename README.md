@@ -35,4 +35,8 @@ Flop Ratio=Number of dff/Total number of cells*100=1613/14876=0.1084*100=10.84%
 ## Floorplan
 Netlist is the connectivity bw the component. Die is the smll sc material on that ckt is implemented.Inside the die it have the core where the fundamental logic is placed.
 utilization factor=area of netlist/total area of the core.
-Aspect ratio=Heigh/Width.
+Aspect ratio=Heigh of the core/Width of the core.
+If any unit is uses multiple times then we separate out as a block(ip/module;-memory,mux,comparator) and intantiated muiltiple times. The arrengement of these ip is called floorplanning.These are called preplaced cells. Onec it is palced it cannot be moved.
+
+Decoupling capacitor is place bw the elements if any changes happen from 0->1 it get charges (Vdd') and 1->0 It discharges(Vss') if it is not in the NMH and NML then the charges are provided/Suck by this capacitor.This is for one block.
+Let say in bw the block it haappns If the bus are 1->0 there is ground bounce and 0->1 (Voltage droop) if one vdd is kept place if multiple vdd occurs then this problem is solved(so it can get power to the nearest supply)=> Power planning.

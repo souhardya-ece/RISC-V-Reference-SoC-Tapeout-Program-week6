@@ -67,5 +67,14 @@ Die area=443587.212425 sq microns.
 
 ## Placement And Routing
 Every gate and the flop have the sq,rect shape all are in the libery(shape and the time information) There are diff types of libery of diff falvours. We place the standared cell on floor on to the optimized place.Sometimes the blocks are far away(hich r and c) from source so in that case we use buffers(repeaters) which replicate same signal after some time.
+### Placement Lab
+```
+run_placement
+// now to see the placement in magic
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/17-03_12-06/results/placement/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+exit
+```
+### Output
 
 

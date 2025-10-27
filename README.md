@@ -40,3 +40,5 @@ If any unit is uses multiple times then we separate out as a block(ip/module;-me
 
 Decoupling capacitor is place bw the elements if any changes happen from 0->1 it get charges (Vdd') and 1->0 It discharges(Vss') if it is not in the NMH and NML then the charges are provided/Suck by this capacitor.This is for one block.
 Let say in bw the block it haappns If the bus are 1->0 there is ground bounce and 0->1 (Voltage droop) if one vdd is kept place if multiple vdd occurs then this problem is solved(so it can get power to the nearest supply)=> Power planning.
+Pin(i/o) is placed bw the die and core and the remaining portion are filled so that no block and wire are not placed(logical cell placement bolckage)
+

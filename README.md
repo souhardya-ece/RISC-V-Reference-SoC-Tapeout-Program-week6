@@ -65,5 +65,7 @@ Die width in micron=660685/1000=660.685 Microns
 Die Height in microns=671407/1000=671.405 Microns
 Die area=443587.212425 sq microns.
 
-### Placement
+## Placement And Routing
+Every gate and the flop have the sq,rect shape all are in the libery(shape and the time information) There are diff types of libery of diff falvours. We place the standared cell on floor on to the optimized place.Sometimes the blocks are far away(hich r and c) from source so in that case we use buffers(repeaters) which replicate same signal after some time.
+
 

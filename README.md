@@ -81,5 +81,12 @@ Input:-PDK,DRC and LVS rule, Spice model, library,user defined Spec
 Design Step:- Ckt design(spice simulation), Layout design(eular path, stick diagram), Characterization(Timing=>stimulus).
 Output:- CDL(Ckt Description Language),GDSII,LEF,Extracted spice netlist.
 
+You can chane the variable just copy the variable in openlane and change the value run so you can see that difference in the simulation.
 
+## Cmos Inv CMOS Simulation
+Spice Deck:-Component Connectivity and component value. Then define node and name that node. There are 4 node in Cmos inv .
+Eample of spice deck"Info about all the commponent and its connectivity,.op,.dc(sweep component),.lib"
+To run the spice deck:- Open ngspice terminal->cd "location where the spice deck locate"-> source filename->run->setplot->dc1->display->plot out vs in.
+If W/L of pmos is 2.5 of nmos then vm goes exactly at the middle of the graph.
+Switching Threshold:- Vin=Vout Where the cmos cut atthat value Vm=Vin. Vgs=Vds and Idsp=-Idsn Depending upon the w/l of nmos and pmos the switching threshold will differ. When the ratio of Wp/Lp(increase) to the Wn/Ln is increase switeching threshold increase. as pmos have the more area. Rise delay decrease and fall delay increase . If the ratio is double then rise =Fall delay(This is the characteristics of clk inv);Vds=Vgs;Idsp=-Idsn;
 

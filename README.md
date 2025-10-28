@@ -167,5 +167,20 @@ drc why
 ```
 ### Output
 
+## Extract Lef file
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+magic -T sky130A.tech sky130_inv.mag &
+cd  Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd
+less tracks.info
+```
+### Output
+To Open the grid
+```
+help grid
+grid 0.46um 0.34um 0.23um 0.17um
+```
+### Output
+
 
 

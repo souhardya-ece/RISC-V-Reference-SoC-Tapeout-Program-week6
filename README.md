@@ -89,4 +89,17 @@ Eample of spice deck"Info about all the commponent and its connectivity,.op,.dc(
 To run the spice deck:- Open ngspice terminal->cd "location where the spice deck locate"-> source filename->run->setplot->dc1->display->plot out vs in.
 If W/L of pmos is 2.5 of nmos then vm goes exactly at the middle of the graph.
 Switching Threshold:- Vin=Vout Where the cmos cut atthat value Vm=Vin. Vgs=Vds and Idsp=-Idsn Depending upon the w/l of nmos and pmos the switching threshold will differ. When the ratio of Wp/Lp(increase) to the Wn/Ln is increase switeching threshold increase. as pmos have the more area. Rise delay decrease and fall delay increase . If the ratio is double then rise =Fall delay(This is the characteristics of clk inv);Vds=Vgs;Idsp=-Idsn;
+## Fabrication(16 mask Process of CMOS)
+First select substrate in that case P-type(high resistivity).sub doping<well doping.First on top grow sio2 on top deposite si3N4 on top do photoresist.Top level create mask(uv light).(photolithography)->Oxidation.Lcos process(to give the isolation).(birds beak).N well(pmos:-Photoresist,phosphorous);P well(nmos:-Photoresist,Bron)->Twin tub process.implant p well on light p and n well on light n remove the oxide layer grow new oxide layer ->Gate Fromation.Doping profile on n well is s->Ldd->Channel(P+,P-,N)and on the P well(N+,N-,P)->LDD formation(lightly doped drain)->Source-drain formation(high temp annealing)->interconnect using Ti(TIN) sputtering->Diposit think layer of sio2 (To flat the surface)(cmp:-Chemical mechanical polishing)-> higher level metal formation.
+### Cmos Labs 
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+git clone https://github.com/nickson-jose/vsdstdcelldesign
+cd vsdstdcelldesign
+cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech 
+ls
+magic -T sky130A.tech sky130_inv.mag &
+```
+### Output
+
 

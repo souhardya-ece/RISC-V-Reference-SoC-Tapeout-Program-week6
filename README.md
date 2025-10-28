@@ -102,4 +102,70 @@ magic -T sky130A.tech sky130_inv.mag &
 ```
 ### Output
 
+### Spice Extraction
+Inside this Magic Terminal
+```
+pwd
+extract all
+ext2spice cthresh 0 rthresh 0
+ext2spice
+```
+### Output
+Spice Netlist
+### Spice Simulation
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+ngspice sky130_inv.spice
+plot y vs time a
+```
+### Output
+### Calculation
+After calculating We get
+Rise Transition Time= 63.76ps(20%->80%)
+Fall Transition Time= 41.6ps(20%->80%)
+Rise Cell Delay=60.5 ps(50% of i/p to 50% of o/p)
+Fall Cell Delay= 19 ps(50% of i/p to 50% of o/p)
+### Magic Lab
+```
+cd
+wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+tar xfz drc_tests.tgz
+cd drc_tests
+ls -al
+gvim .magicrc
+magic -d XR &
+```
+### Output
+Error
+Fixing
+
+Inside The magic terminal
+```
+tech load sky130A.tech
+drc check
+drc why
+```
+### Output
+Error
+Fixing
+Inside The magic terminal
+```
+tech load sky130A.tech
+drc check
+drc why
+```
+### Output
+Error
+Fixing
+### Challange
+Inside this magic terminal
+```
+tech load sky130A.tech
+drc style drc(full)
+drc check
+drc why
+```
+### Output
+
+
 

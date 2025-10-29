@@ -289,6 +289,8 @@ set ::env(SYNTH_SIZING) 1
 run_synthesis
 ```
 ### Output
+# Theory
+
 We explicitly include the pre_sta.conf and my_base.sdc to their espective file location
 
 ### Timing analysis

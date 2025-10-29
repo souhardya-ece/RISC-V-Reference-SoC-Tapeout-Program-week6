@@ -232,5 +232,111 @@ run_synthesis
 ## Delay Table
 For AND gate enable is 1 and for OR it is 0. In CT all the buffer in same level drive same load and same size.Delay table is the table where input delay with its output load will give us the delay of that cell for each cell the delay table will be different.Let sat we have to calculate the delay of cell 3 level so we add up the delay of 1 and 2 to get the delay of 3 that bring us the non zero skew value.
 
+TO improve timing again run synthesis
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a -tag 27-10_08-31 -overwrite
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+echo $::env(SYNTH_STRATEGY)
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+echo $::env(SYNTH_BUFFERING)
+echo $::env(SYNTH_SIZING)
+set ::env(SYNTH_SIZING) 1
+echo $::env(SYNTH_DRIVING_CELL)
+run_synthesis
+```
+### Output
+
+Now when we run the floorplan it got some error in order to fix that we run it part by part
+```
+init_floorplan
+place_io
+tap_decap_or
+```
+### Output
+## Placement
+```
+run_placement
+```
+### Output
+Now to see the palcement on magic 
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/27-10_08-31/results/placement/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+### Output
+
+To see the internal layers(we run this command inside the magic terminal)
+```
+expand
+```
+### Output
+## Timing analysis using Opensta
+First Run synthesis
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_SIZING) 1
+run_synthesis
+```
+### Output
+We explicitly include the pre_sta.conf and my_base.sdc to their espective file location
+
+### Timing analysis
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+sta pre_sta.conf
+```
+### Output
+
+To reduce the fanout we again do the synthesis
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_SIZING) 1
+set ::env(SYNTH_MAX_FANOUT) 4
+echo $::env(SYNTH_DRIVING_CELL)
+run_synthesis
+```
+### Output
+
+Now again doing timing analysis
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+sta pre_sta.conf
+```
+### Output
+
+Remove all the violation
+```
+report_net -connections _10566_
+help replace_cell
+replace_cell _14510_ sky130_fd_sc_hd__3_2
+report_checks -fields {net cap slew input_pins} -digits 4
+```
+### Output
+
+
+
+
+
+
+
+
+
 
 

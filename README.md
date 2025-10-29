@@ -195,5 +195,40 @@ lef write
 ```
 ### Output
 
+First copy all the required file in SRC folder
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign
+cp sky130_vsdinv.lef ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+ls ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+cp libs/sky130_fd_sc_hd__* ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+ls ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a
+less config.tcl
+```
+### Output
+Edit the config.tcl file
+```
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+```
+### Output
+
+## Synthesis With lef and custon Celll
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a -tag 27-10_08-31 -overwrite
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+run_synthesis
+```
+### Output
+
 
 

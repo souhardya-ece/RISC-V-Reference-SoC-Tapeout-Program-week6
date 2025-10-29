@@ -330,6 +330,12 @@ report_checks -fields {net cap slew input_pins} -digits 4
 ```
 ### Output
 
+To verify timing 
+```
+report_checks -from _27860_ -to _27762 -through _14510_
+```
+
+
 
 
 

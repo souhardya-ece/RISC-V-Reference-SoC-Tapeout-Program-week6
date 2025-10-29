@@ -229,6 +229,8 @@ add_lefs -src $lefs
 run_synthesis
 ```
 ### Output
+## Delay Table
+For AND gate enable is 1 and for OR it is 0. In CT all the buffer in same level drive same load and same size.Delay table is the table where input delay with its output load will give us the delay of that cell for each cell the delay table will be different.Let sat we have to calculate the delay of cell 3 level so we add up the delay of 1 and 2 to get the delay of 3 that bring us the non zero skew value.
 
 
 

@@ -223,7 +223,7 @@ cd Desktop/work/tools/openlane_working_dir/openlane
 docker
 ./flow.tcl -interactive
 package require openlane 0.9
-prep -design picorv32a -tag 27-10_08-31 -overwrite
+prep -design picorv32a -tag 29-10_09-46 -overwrite
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 run_synthesis
@@ -238,7 +238,7 @@ cd Desktop/work/tools/openlane_working_dir/openlane
 docker
 ./flow.tcl -interactive
 package require openlane 0.9
-prep -design picorv32a -tag 27-10_08-31 -overwrite
+prep -design picorv32a -tag 29-10_09-46 -overwrite
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 echo $::env(SYNTH_STRATEGY)
@@ -306,7 +306,7 @@ cd Desktop/work/tools/openlane_working_dir/openlane
 docker
 ./flow.tcl -interactive
 package require openlane 0.9
-prep -design picorv32a
+prep -design picorv32a 29-10_09-46 -overwrite
 set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 set ::env(SYNTH_SIZING) 1
@@ -323,20 +323,66 @@ sta pre_sta.conf
 ```
 ### Output
 
-Remove all the violation
+## Sta Optimization
 ```
-report_net -connections _10566_
+report_net -connections _11672_
 help replace_cell
-replace_cell _14510_ sky130_fd_sc_hd__3_2
+replace_cell _14510_ sky130_fd_sc_hd__or3_4
 report_checks -fields {net cap slew input_pins} -digits 4
+
+report_net -connections _11675_
+replace_cell _14514_ sky130_fd_sc_hd__or3_4
+report_checks -fields {net cap slew input_pins} -digits 4
+
+report_net -connections _11643_
+replace_cell _14481_ sky130_fd_sc_hd__or4_4
+report_checks -fields {net cap slew input_pins} -digits 4
+
+report_net -connections _11668_
+replace_cell _14506_ sky130_fd_sc_hd__or4_4
+report_checks -fields {net cap slew input_pins} -digits 4
+
+report_checks -from _29043_ -to _30440_ -through _14506_
+```
+### Output
+Now copy the new netlist to the picorv32a
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/29-10_09-46/results/synthesis/
+ls
+cp picorv32a.synthesis.v picorv32a.synthesis_old.v
+ls
 ```
 ### Output
 
-To verify timing 
+Write verilog
 ```
-report_checks -from _27860_ -to _27762 -through _14510_
+help write_verilog
+write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/29-10_09-46/results/synthesis/picorv32a.synthesis.v
+exit
 ```
 ### Output
+Verified that the netlist is overwritten by checking that instance _14506_ is replaced with sky130_fd_sc_hd__or4_4
+### Output
+
+In run the new letlist
+```
+prep -design picorv32a -tag 29-10_09-46 -overwrit
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+set ::env(SYNTH_SIZING) 1
+run_synthesis
+init_floorplan
+place_io
+tap_decap_or
+run_placement
+run_cts
+```
+### Output
+
+
+
+
 
 
 

@@ -346,7 +346,7 @@ report_checks -fields {net cap slew input_pins} -digits 4
 report_checks -from _29043_ -to _30440_ -through _14506_
 ```
 ## Clock Tree Synthesis
-
+The time difference between clk to the input to the flop is skew(ideally 0). In between the clk repeater and the  input flop there is a huge path so we use clk repeater(equal rise and fall time).We protect the clk net by clk shielding(cross talk).If not there is and glitch in the data.
 ### Output
 Now copy the new netlist to the picorv32a
 ```
@@ -429,6 +429,69 @@ set ::env(CTS_CLK_BUFFER_LIST) [linsert $::env(CTS_CLK_BUFFER_LIST) 0 sky130_fd_
 echo $::env(CTS_CLK_BUFFER_LIST)
 ```
 ### Output
+### Final RTL to Post Routing
+```
+cd Desktop/work/tools/openlane_working_dir/openlane
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+prep -design picorv32a
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+set ::env(SYNTH_STRATEGY) "DELAY 3"
+set ::env(SYNTH_SIZING) 1
+run_synthesis
+init_floorplan
+place_io
+tap_decap_or
+run_placement
+run_cts
+gen_pdn 
+```
+### Output
+To see the Cts in magic
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/29-10_09-46/tmp/floorplan/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read 14-pdn.def &
+```
+### Output
+## Routing
+### Labs
+```
+echo $::env(CURRENT_DEF)
+echo $::env(ROUTING_STRATEGY)
+run_routing
+```
+### Output
+To see the routing on magic
+```
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/29-10_09-46/results/routing/
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.def &
+```
+### Output
+## Final Post Routing Timing analysis
+```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/29-10_09-46/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/29-10_09-46/results/routing/picorv32a.def
+write_db pico_route.db
+read_db pico_route.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/29-10_09-46/results/synthesis/picorv32a.synthesis_preroute.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+read_spef /openLANE_flow/designs/picorv32a/runs/29-10_09-46/results/routing/picorv32a.spef
+report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
+exit
+```
+### Output
+
+
+
+
+
+
 
 
 

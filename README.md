@@ -289,7 +289,8 @@ set ::env(SYNTH_SIZING) 1
 run_synthesis
 ```
 ### Output
-# Theory
+# Set up Timing analysis
+Combinational delay < Time period When Clk=0 in d f/f first mux tr data from D->Qm and when clk =1 second mux tr data from Qm-> Q So there is a time required for capture flop to tr data this (D->Qm)is called set up time. So theta< T-S. Deu to pll finite period of time to rise the clk edge this is jitter(temporary variation of clk period). so theta<t-s-su . This is used for optimizing the path.
 
 We explicitly include the pre_sta.conf and my_base.sdc to their espective file location
 
@@ -344,6 +345,8 @@ report_checks -fields {net cap slew input_pins} -digits 4
 
 report_checks -from _29043_ -to _30440_ -through _14506_
 ```
+## Clock Tree Synthesis
+
 ### Output
 Now copy the new netlist to the picorv32a
 ```

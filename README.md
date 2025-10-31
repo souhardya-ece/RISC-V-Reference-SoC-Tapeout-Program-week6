@@ -381,6 +381,13 @@ tap_decap_or
 run_placement
 run_cts
 ```
+## CTS with real clk
+### Setup Timing Analysis
+Let wire have some delay so we add buffers on to the wire so Theta+1+2(del1)< T+1+3+4(del2);Del1=del2=skew; So the final setup time equation comes up is Theta+del1<T+Del2-s-su So LHS is data arrival time and the RHS is data required time. The diff(r-a) is called slack which is 0 or +ve.
+### Hold Timing Analysis
+Hold time is refered as the second mux delay. And Theta(Combinational delay)> Hold time
+If we add buffers onto the clk wire the theta+del1>H+del2 There is jitter as the same edge is goes to both of the flop. so final equauion is theta+del1>H+del2+Hu LHS is data arrival time and RHS is data required time and the difference(a-r) is slack . Which is 0 or +ve. 
+
 ### Output
 Now after post cts we do the timing analysis using openroad
 

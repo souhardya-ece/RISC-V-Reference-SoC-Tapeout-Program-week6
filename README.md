@@ -466,7 +466,7 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 ```
 ### Output
 ## Routing
-A chip at center there is an inner core and out of that there is an pads(power) that is connected to the strip through rings inside core there are some rails. Routing are two types fast(golbal cell, global edge) and detail route. First Fast route then detail route using algorithm.
+A chip at center there is an inner core and out of that there is an pads(power) that is connected to the strip through rings inside core there are some rails. Routing are two types fast(golbal cell, global edge) and detail route. First Fast route then detail route using algorithm..In first step it goes into preprocessed route guide. then inter guide connectivity. In same metal layer routing is parallel and the multiple metal layer routing is sequential(odd are connected and same as the even metal layers) all rules are given in the TritonRoute.There are two points one is access point and the another one is access point cluster(Through which we connect one metal to another).
 ### Labs
 ```
 echo $::env(CURRENT_DEF)

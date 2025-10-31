@@ -436,7 +436,9 @@ set ::env(CTS_CLK_BUFFER_LIST) [linsert $::env(CTS_CLK_BUFFER_LIST) 0 sky130_fd_
 echo $::env(CTS_CLK_BUFFER_LIST)
 ```
 ### Output
-### Final RTL to Post Routing
+## Final RTL to Post Routing
+### Routing algorithm and DRC
+Lee's Algorithm:-
 ```
 cd Desktop/work/tools/openlane_working_dir/openlane
 docker

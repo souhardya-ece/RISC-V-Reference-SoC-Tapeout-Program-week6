@@ -438,7 +438,8 @@ echo $::env(CTS_CLK_BUFFER_LIST)
 ### Output
 ## Final RTL to Post Routing
 ### Routing algorithm and DRC
-Lee's Algorithm:-
+Lee's Algorithm:- It creates a grid. From source at its 4 side labeling as 1 ans 1's corresponding 4 side label as 2 like it goes on untill it hits the target then trace the path from 1->9(let) . There are multiple path but the less bend is preffered.Time and space are more.When routing there are some specific rules like what is the min width of wire , what is the min dis among two parallel wires.Using Light we route them. If any two wire cross each other there is an signal short so we place wire one above another.Via is connector of top to bottom metal layer and there is some min width.
+### Labs
 ```
 cd Desktop/work/tools/openlane_working_dir/openlane
 docker
@@ -465,6 +466,7 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 ```
 ### Output
 ## Routing
+A chip at center there is an inner core and out of that there is an pads(power) that is connected to the strip through rings inside core there are some rails. Routing are two types fast(golbal cell, global edge) and detail route. First Fast route then detail route using algorithm.
 ### Labs
 ```
 echo $::env(CURRENT_DEF)
